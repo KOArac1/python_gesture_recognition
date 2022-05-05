@@ -1,3 +1,32 @@
+Skip to content
+Search or jump to…
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@KOArac1 
+KOArac1
+/
+python_gesture_recognition
+Public
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+Settings
+python_gesture_recognition/README.md
+@KOArac1
+KOArac1 Create README.md
+Latest commit a941402 1 hour ago
+ History
+ 1 contributor
+431 lines (385 sloc)  13.4 KB
+   
 # 这只是一个普通的项目......
 - Draw_On_Screen.py
     - 有BUG......
@@ -9,13 +38,11 @@
     - 为了修Draw_On_Screen.py的BUG建的文件......
 
 >其实为了这次省赛,这些都是临时学的.
-
 ## Draw_On_Screen.py
 ``` python
 import cv2
 from cvzone.HandTrackingModule import HandDetector
 import math
-
 cap = cv2.VideoCapture(0)
 detector = HandDetector(detectionCon=0.75, maxHands=1)
 center = [0, 0]
@@ -23,20 +50,14 @@ temp_center = [0, 0]
 d_ = False
 time = 0
 dpt1 = dpt2 = []
-
-
 def draw(img_):
 	for i in range(time):
 		img_ = cv2.line(img, (int(dpt1[i][0]), int(dpt1[i][1])), (int(dpt2[i][0]), int(dpt2[i][1])), (0, 0, 255), 2)
-
 	return img_
-
-
 while True:
 	flag, img = cap.read()
 	if not flag:
 		break
-
 	hands, img = detector.findHands(img)
 	if hands:
 		hand = hands[0]
@@ -53,14 +74,11 @@ while True:
 			center[0] = x2 + xj
 		else:
 			center[0] = x1 + xj
-
 		if y1 > y2:
 			center[1] = y2 + yj
 		else:
 			center[1] = y1 + yj
-
 		print("Center: ", center)
-
 		if length < 50:
 			if not d_:
 				d_ = True
@@ -82,16 +100,13 @@ while True:
 			cv2.putText(img, "No graffiti!", (50, 100), cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.5, color=(0, 0, 255),
 			            thickness=2)
 			d_ = False
-
 	cv2.imshow("Draw On Screen!", img)
 	if cv2.waitKey(1) == ord('q'):
 		break
-
 cap.release()
 cv2.destroyAllWindows()
 ```
 >以上代码有蜜汁BUG,可能是python本身的问题.
-
         这里使用了opencv,mediapipe与cvzone三个包,来判断用户是否想要进行涂鸦,并用cvzone中的HandTrackingModule模块实现捕捉手指的坐标,然后且由列表储存起来.
 ``` python
 if length < 50:
@@ -119,12 +134,10 @@ length, info, img = detector.findDistance(lmList[8][0:2], lmList[12][0:2], img)
 			center[0] = x2 + xj
 		else:
 			center[0] = x1 + xj
-
 		if y1 > y2:
 			center[1] = y2 + yj
 		else:
 			center[1] = y1 + yj
-
 		print("Center: ", center)
 ```
 ### **这里使用了勾股定理来计算中指与食指之间的中心点**
@@ -143,12 +156,10 @@ x2, y2 = lmList[12][0:2]
 def draw(img_):
 	for i in range(time):
 		img_ = cv2.line(img, (int(dpt1[i][0]), int(dpt1[i][1])), (int(dpt2[i][0]), int(dpt2[i][1])), (0, 0, 255), 2)
-
 	return img_
 ```
         img_获取待处理的图片,time是目前用户有多少帧想要执行"涂鸦"的命令,dpt1和dpt2是每一帧需要涂鸦的起始坐标和结束坐标.
         然后这里使用了cv2包中的line函数进行画线,用众多的线来实现"涂鸦"的效果.
-
 ### **其他的,没啥好说的,看代码理解.**
 ***
 ***
@@ -160,12 +171,10 @@ def draw(img_):
 import cv2
 from cvzone.HandTrackingModule import HandDetector
 import time
-
 cap = cv2.VideoCapture(0)
 detector = HandDetector(detectionCon=0.8, maxHands=2)
 lmList1 = lmList2 = []
 cTime = time.time()
-
 while True:
 	success, img = cap.read()
 	if not success:
@@ -184,7 +193,6 @@ while True:
 		# print("No hands!", end='')
 		print("No Hands!")
 		# cv2.putText(img, 'No Hands!', (0, 350), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.5, color=(0, 0, 255), thickness=2)
-
 	# if len(hands) == 1:
 	# 	cv2.putText(img, 'Only One Hand!', (0, 350), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.5, color=(0, 0, 255), thickness=2)
 	#
@@ -209,7 +217,6 @@ while True:
 	# Show Image.
 	if cv2.waitKey(1) == ord('q'):
 		break
-
 cap.release()
 cv2.destroyAllWindows()
 ```
@@ -220,22 +227,22 @@ cv2.destroyAllWindows()
 ***
 # **接下来是英文版,机翻警告!!!**
 
-#This is just an ordinary project
+# This is just an ordinary project
+## **The following is machine translation!!!**
 - Draw_ On_ Screen. py
--There are bugs
+	- There are bugs
 - main. py
--Gesture recognition
+	- Gesture recognition
 - teach. py
--Temporary documents
-- try. py
--To fix draw_ On_ Screen. Py bug file
->In fact, for this provincial competition, these are temporary learning
+	- Temporary documents
+- try.py
+	- To fix draw_ On_ Screen. Py bug file
+>In fact, for this provincial competition, these are temporary learning.
 ## Draw_ On_ Screen. py
 ``` python
 import cv2
 from cvzone.HandTrackingModule import HandDetector
 import math
-
 cap = cv2.VideoCapture(0)
 detector = HandDetector(detectionCon=0.75, maxHands=1)
 center = [0, 0]
@@ -243,20 +250,14 @@ temp_center = [0, 0]
 d_ = False
 time = 0
 dpt1 = dpt2 = []
-
-
 def draw(img_):
 	for i in range(time):
 		img_ = cv2.line(img, (int(dpt1[i][0]), int(dpt1[i][1])), (int(dpt2[i][0]), int(dpt2[i][1])), (0, 0, 255), 2)
-
 	return img_
-
-
 while True:
 	flag, img = cap.read()
 	if not flag:
 		break
-
 	hands, img = detector.findHands(img)
 	if hands:
 		hand = hands[0]
@@ -273,14 +274,11 @@ while True:
 			center[0] = x2 + xj
 		else:
 			center[0] = x1 + xj
-
 		if y1 > y2:
 			center[1] = y2 + yj
 		else:
 			center[1] = y1 + yj
-
 		print("Center: ", center)
-
 		if length < 50:
 			if not d_:
 				d_ = True
@@ -302,11 +300,9 @@ while True:
 			cv2.putText(img, "No graffiti!", (50, 100), cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.5, color=(0, 0, 255),
 			            thickness=2)
 			d_ = False
-
 	cv2.imshow("Draw On Screen!", img)
 	if cv2.waitKey(1) == ord('q'):
 		break
-
 cap.release()
 cv2.destroyAllWindows()
 ```
@@ -337,12 +333,10 @@ length, info, img = detector.findDistance(lmList[8][0:2], lmList[12][0:2], img)
 			center[0] = x2 + xj
 		else:
 			center[0] = x1 + xj
-
 		if y1 > y2:
 			center[1] = y2 + yj
 		else:
 			center[1] = y1 + yj
-
 		print("Center: ", center)
 ```
 >XJ and YJ are two right angle sides.
@@ -357,7 +351,6 @@ x2, y2 = lmList[12][0:2]
 def draw(img_):
 	for i in range(time):
 		img_ = cv2.line(img, (int(dpt1[i][0]), int(dpt1[i][1])), (int(dpt2[i][0]), int(dpt2[i][1])), (0, 0, 255), 2)
-
 	return img_
 ```
 ***
@@ -374,12 +367,10 @@ def draw(img_):
 import cv2
 from cvzone.HandTrackingModule import HandDetector
 import time
-
 cap = cv2.VideoCapture(0)
 detector = HandDetector(detectionCon=0.8, maxHands=2)
 lmList1 = lmList2 = []
 cTime = time.time()
-
 while True:
 	success, img = cap.read()
 	if not success:
@@ -398,7 +389,6 @@ while True:
 		# print("No hands!", end='')
 		print("No Hands!")
 		# cv2.putText(img, 'No Hands!', (0, 350), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.5, color=(0, 0, 255), thickness=2)
-
 	# if len(hands) == 1:
 	# 	cv2.putText(img, 'Only One Hand!', (0, 350), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.5, color=(0, 0, 255), thickness=2)
 	#
@@ -423,7 +413,6 @@ while True:
 	# Show Image.
 	if cv2.waitKey(1) == ord('q'):
 		break
-
 cap.release()
 cv2.destroyAllWindows()
 ```
